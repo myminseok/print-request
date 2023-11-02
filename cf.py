@@ -15,8 +15,9 @@ class RequestHandler(BaseHTTPRequestHandler):
         print(self.headers)
         print("<----- Request End -----\n")
         
-        self.send_response(200)
+        self.send_response(200, message="response message: GET done")
         self.send_header("Set-Cookie", "foo=bar")
+        self.end_headers()
         
     def do_POST(self):
         
@@ -34,7 +35,8 @@ class RequestHandler(BaseHTTPRequestHandler):
         print(self.rfile.read(length))
         print("<----- Request End -----\n")
         
-        self.send_response(200)
+        self.send_response(200, message="response message: POST done")
+        self.end_headers()
     
     do_PUT = do_POST
     do_DELETE = do_GET
